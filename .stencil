@@ -1,0 +1,11 @@
+{
+  "customLayouts": {
+    "brand": {},
+    "category": {},
+    "page": {},
+    "product": {}
+  },
+  "normalStoreUrl": "https://www.jackgameroom.com/",
+  "accessToken": "7npu83t2wukkn040hg4ljc8854z70wn",
+  "port": 3000
+}

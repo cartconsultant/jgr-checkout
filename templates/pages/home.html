@@ -1,0 +1,198 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+carousel: {{theme_settings.homepage_show_carousel}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+---
+{{#partial "hero"}}
+    {{#if carousel}}
+        {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows}}
+    {{/if}}
+    {{{snippet 'home_content'}}}
+{{/partial}}
+
+{{#partial "page"}}
+
+<!-- Parallax Video -->
+<div class="parallaxVideo" onclick="window.location.href='/poker-tables/professional/'" -->
+    <video playsinline autoplay muted loop onclick="window.location.href='/poker-tables/professional/'">
+    <source src="https://player.vimeo.com/external/377378773.hd.mp4?s=d6c8d2d434d1bf9106e71324ea0c8b958a61a99a&profile_id=174" type="video/mp4">
+    </video>
+</div>
+
+<!-- Added parallax video title overlay -- JTB4 200325 -->
+<div class="parallaxOverlay paxOver1 hidden-phone" onclick="window.location.href='/poker-tables/'">Custom Game Room Furniture</div>
+<div class="parallaxOverlay paxOver2 hidden-phone" onclick="window.location.href='/poker-tables/'">Made In America</div>
+
+<!-- Added home tiles -- JTB4 191009 -->
+
+<div class="main full" style="margin: 20px 0 50px 0;">
+    <h2 class="page-heading" style="margin-bottom:25px;">Categories</h2>
+
+    <span>
+        <a href="/poker-tables/">
+            <img class="homeTile" title="Poker Tables" 
+            src="/content/home/tile_poker.jpg" 
+            onmouseover="this.src='/content/home/tile_poker_ro.jpg'" 
+            onmouseout="this.src='/content/home/tile_poker.jpg'" 
+            alt="Poker Tables by Jack Game Room" />
+        </a>        
+    </span>
+    <span>
+        <a href="/poker-tables/professional/">
+            <img class="homeTile" title="Hold'em Tables" 
+            src="/content/home/tile_holdem.jpg" 
+            onmouseover="this.src='/content/home/tile_holdem_ro.jpg'" 
+            onmouseout="this.src='/content/home/tile_holdem.jpg'" 
+            alt="Hold'em Tables by Jack Game Room" />
+        </a>        
+    </span>
+    <span>
+        <a href="/seating/game-chairs/">
+            <img class="homeTile" title="Game Chairs" 
+            src="/content/home/tile_chairs.jpg" 
+            onmouseover="this.src='/content/home/tile_chairs_ro.jpg'" 
+            onmouseout="this.src='/content/home/tile_chairs.jpg'" 
+            alt="Game Chairs by Jack Game Room" />
+        </a>        
+    </span>
+    <span>
+        <a href="/seating/bar-stools/">
+            <img class="homeTile homeTileLast" title="Bar & Counter Tables" 
+            src="/content/home/tile_stools.jpg" 
+            onmouseover="this.src='/content/home/tile_stools_ro.jpg'" 
+            onmouseout="this.src='/content/home/tile_stools.jpg'" 
+            alt="Bar & Counter Tables by Jack Game Room" />
+        </a>        
+    </span>
+    <span>
+        <a href="/pool-tables/">
+            <img class="homeTile" title="Pool Tables" 
+            src="/content/home/tile_pool.jpg" 
+            onmouseover="this.src='/content/home/tile_pool_ro.jpg'" 
+            onmouseout="this.src='/content/home/tile_pool.jpg'" 
+            alt="Pool Tables by Jack Game Room" />
+        </a>        
+    </span>
+    <span>
+        <a href="/shuffleboard/">
+            <img class="homeTile" title="Shuffleboard Tables" 
+            src="/content/home/tile_shuffle.jpg" 
+            onmouseover="this.src='/content/home/tile_shuffle_ro.jpg'" 
+            onmouseout="this.src='/content/home/tile_shuffle.jpg'" 
+            alt="Shuffleboard Tables by Jack Game Room" />
+        </a>        
+    </span>
+    <span>
+        <a href="/outdoor/foosball-tables/">
+            <img class="homeTile" title="Foosball Tables" 
+            src="/content/home/tile_foosball.jpg" 
+            onmouseover="this.src='/content/home/tile_foosball_ro.jpg'" 
+            onmouseout="this.src='/content/home/tile_foosball.jpg'" 
+            alt="Foosball Tables by Jack Game Room" />
+        </a>        
+    </span>
+    <span>
+        <a href="/outdoor/ping-pong-tables/">
+            <img class="homeTile homeTileLast" title="Ping Pong Tables" 
+            src="/content/home/tile_pingpong.jpg" 
+            onmouseover="this.src='/content/home/tile_pingpong_ro.jpg'" 
+            onmouseout="this.src='/content/home/tile_pingpong.jpg'" 
+            alt="Ping Pong Tables by Jack Game Room" />
+        </a>        
+    </span>
+</div>
+
+<div class="row-jailbreak">
+    <a href="/about/">
+    <div class="main full">
+        <img style="margin:0 10px 10px 0; max-width:46%; width:260px;" title="Why Jack? Image 0" 
+            src="/content/home/ch_why0.png?t=2" 
+            onmouseover="this.src='/content/home/ch_why0_ro.png?t=2'" 
+            onmouseout="this.src='/content/home/ch_why0.png?t=2'" 
+            alt="Why Jack? Hand Finishing by American Workers" />
+        <img style="margin:0 10px 10px 0; max-width:46%; width:260px; border-radius:50%;" title="Why Jack? Image 1" 
+            src="/content/home/ch_why1.png" 
+            onmouseover="this.src='/content/home/ch_why1_ro.png'" 
+            onmouseout="this.src='/content/home/ch_why1.png'" 
+            alt="Why Jack? Hand Sanding by American Workers" />
+        <img style="margin:0 10px 10px 0; max-width:46%; width:260px; border-radius:50%;" title="Why Jack? Image 2" 
+            src="/content/home/ch_why2.png" 
+            onmouseover="this.src='/content/home/ch_why2_ro.png'" 
+            onmouseout="this.src='/content/home/ch_why2.png'" 
+            alt="Detaied View of Woodside Poker Game Chair by Jack Game Room" />
+        <img style="margin:0 0 10px 0; max-width:46%; width:260px; border-radius:50%;" title="Why Jack? Image 3" 
+            src="/content/home/ch_why3.png" 
+            onmouseover="this.src='/content/home/ch_why3_ro.png'" 
+            onmouseout="this.src='/content/home/ch_why3.png'" 
+            alt="Why Jack Image 3" />
+    </div>
+    </a>
+</div>
+
+<div class="main full" style="display:hidden;">
+    {{#if products.featured}}
+        {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
+    {{/if}}
+    
+<!-- Add parallax "Jack Say..." interstitial -->
+<div class="parallax parallax1" onclick="window.location.href='/'" 
+style="background-image: url(/content/home/jack_say_left.png)">
+<div class="jack-say jack-say-left">Put the phone down and play a real game.&nbsp;&nbsp;- Jack</div>
+</div>
+
+<!-- Temporarily hide glory images --
+    <h2 class="page-heading">Premium Game Tables</h2>
+    <div style="margin-bottom:4rem;">
+        <a href="/poker-tables/">
+            <img src="/content/home/category_poker.jpg" />
+        </a>
+    </div>
+
+    <h2 class="page-heading">Custom Game Chairs</h2>
+    <div style="margin-bottom:4rem;">
+        <a href="/seating/game-chairs/">
+            <img src="/content/home/category_chairs.jpg" />
+        </a>
+    </div>
+
+<!-- Add parallax "Jack Say..." interstitial --
+    <div class="parallax parallax1" onclick="window.location.href='/'" 
+    style="background-image: url(content/home/jack_say_right.png)">
+    <div class="jack-say jack-say-right">I remember when being &apos;followed&apos; was a bad thing.&nbsp;&nbsp;- Jack</div>
+    </div>
+
+    <h2 class="page-heading">Deluxe Billiards</h2>
+    <div style="margin-bottom:4rem;">
+        <a href="/pool-tables/">
+            <img src="/content/home/category_pool.jpg" />
+        </a>
+    </div>
+
+    <h2 class="page-heading">Luxury Shuffleboards</h2>
+    <div style="margin-bottom:4rem;">
+        <a href="/shuffleboard/">
+            <img src="/content/home/category_shuffle.jpg" />
+        </a>
+    </div>
+
+<!-- Add parallax "Jack Say..." interstitial --
+    <div class="parallax parallax1" onclick="window.location.href='/'" 
+    style="background-image: url(/content/home/jack_say_left.png)">
+    <div class="jack-say jack-say-left">Make time for some happiness.&nbsp;&nbsp;- Jack</div>
+    </div>
+-->
+
+    {{#if products.new}}
+        {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
+    {{/if}}
+</div>
+{{/partial}}
+{{> layout/base}}

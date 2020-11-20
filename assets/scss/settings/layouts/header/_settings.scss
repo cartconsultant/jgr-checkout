@@ -1,0 +1,258 @@
+// =============================================================================
+// HEADER (Settings)
+// =============================================================================
+
+$header-bg:                                 stencilColor("header-backgroundColor");
+$header-height:                             55px;
+$header-toggle-width:                       $header-height;
+$header-logo-marginVertical:                spacing("half");
+$header-logo-paddingVertical:               $header-logo-marginVertical;
+
+$storeName-color:                           stencilColor("storeName-color");
+
+
+// =============================================================================
+// ALL JTB4 MODIFICATIONS TO SCSS: Header
+// =============================================================================
+
+// JTB4 191014: Fix header height on web pages (broken somewhere?) 
+.navPages {
+    height: auto !important;
+}
+
+// JTB4 201004: Hide Made in America for smaller screen sizes
+.min930 {
+    display: none;
+    @media (min-width: 930px) {
+    display: inline;
+    }
+}
+
+// JTB4 191014: Show regular logo on desktop, mobile logo on mobile
+
+.header-logo-image-mobile {
+    display: none;
+}
+.header-logo {
+    margin-top: 0px !important;
+    @include breakpoint("medium") {
+        margin-bottom: -2.2rem !important;
+    }
+}
+
+@media only screen and (max-width: 801px) {
+    .header-logo-image {
+        display: none;
+    }
+    .header-logo-image-mobile {
+        display: inline-block;
+        max-width: 240px;
+        max-height: 35px;
+        margin-left: -15px;
+    }
+    .header-logo-image-container:after {
+        padding-bottom: 0rem !important;
+    }
+}
+
+// JTB4 191014: Reposition logo on desktop
+.header-logo-image {
+    @include breakpoint("medium") {
+        margin-top: -36px !important;
+    }
+}
+
+// JTB4 19112: Reduce size and spacing of social media icons in nav bar
+// --------------------------------------------------------------------
+.header .socialLinks-item, .footer .socialLinks-item  {
+	margin-right: .5rem !important;
+}
+
+.header .socialLinks-item .icon  {
+	height: 1.3rem !important;
+	width: 1.3rem;
+}
+
+
+// JTB4 191111: Restyle cart icon
+// BE SURE TO ALSO NOTE ALL CHANGES TO: templates > components > common > navigation.html 
+// --------------------------------------------------------------------------------------
+.account-icon {
+    background-image: url("https://www.jackgameroom.com/content/account_icon.png");
+    width: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: -4px;
+    margin-left: 10px;
+}
+.account-log {
+    margin-left: -15px !important;
+}
+.account-user {
+    color: #336699;
+    margin-left:-3px; 
+    margin-right:5px;   
+}
+.navUser-item-cartLabel {
+    display: none !important;
+}
+.countPill {
+    display: inline-block !important;
+    background-color: transparent !important;
+    border-radius: inherit !important;
+    width: 28px!important;
+    color: transparent !important;
+    background-image: url("https://www.jackgameroom.com/content/cart_icon_empty.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    @include breakpoint("medium") {
+    margin-right: 3rem;
+    }
+}
+.countPill--positive {
+    color: #fff !important;
+    background-image: url("https://www.jackgameroom.com/content/cart_icon_full.png") !important;
+}
+
+// JTB4 191014: Override assets > scss > components > stencil > navPages > _navPages.scss
+// --------------------------------------------------------------------------------------
+
+// Hide Search box in primary nav menu bar for tablet and mobile
+#main-menu-search {
+    display: none;
+
+// JTB4 201004: Hide search box on iPhone X
+    //@include breakpoint("medium") {
+    @media (min-width: 830px) {
+    display: block;
+    }
+}
+// Adjust size of Search box in primary nav menu bar for desktop
+#main-menu-search .main-menu-search-box {
+    display: block;
+    padding:5px 10px; 
+    height:2.5rem;
+    width:220px !important; 
+}
+
+// JTB4 191014: Make primary nav submenus open on hover instead of click
+//#menu .navPages-item:hover .navPage-subMenu {
+//    display: block;
+//    left: auto;
+//    transition: .5s !important; // Doesn't work?!
+//}
+
+// JTB4 191102: Modify header action links (main menu nav)
+.navPages-action {
+    font-weight: fontWeight("normal") !important; // Instead of default bold
+    font-size: 14px !important; // Instead of default 15px  
+    padding-right: .8rem !important; // Instead of default 1.14286rem  
+    padding-bottom: .8rem !important; // Instead of default 1.14286rem  
+}
+// JTB4 191102: Better align social links in header with .navUser-action elements
+.navUser-item.navUser-item--social {
+    @media (min-width: 801px) {
+    margin-top: -.1rem !important;
+    margin-left: 1rem !important;
+    }
+}
+
+// JTB4 191014: Make changes to primary nav submenu display 
+// JTB4 191014: Make single column the default primary nav submenu width
+.navPage-subMenu {
+    @include breakpoint("medium") {
+    width: 5000px !important;
+    margin-left: -2800px !important;
+    padding-left: 1850px !important;
+    border: 1px solid #ccc !important;
+    left: auto !important;
+    }
+}
+
+li.navPage-subMenu-item {
+    padding-right: 1.0rem !important;
+    @include breakpoint("medium") {
+        // Make single column the default primary nav submenu width
+        width: 100% !important;
+    }
+}
+.navPage-subMenu-item a {
+    padding-left: 1.5rem !important;
+    @include breakpoint("medium") {
+        margin-bottom: 0 !important;
+        padding: 0.5rem 0 !important;
+        border-bottom: none !important;
+    }
+}
+
+// JTB4 190131: Adjust # of columns in primary nav menu dropdown submenus according to count 
+// JTB4 191014: NO LONGER VALID?
+@media all and (min-width:801px) {
+
+    // Set Brand menu to 4 columns
+    #navPages-44 {
+        width: 70% !important;
+        @include breakpoint("large") {
+        width: 60% !important;
+        }
+    }
+    #navPages-44 li.navPage-subMenu-item {
+        width: 25% !important;
+    }
+
+    // Set Shape, Vibes & Color menus to 2 columns
+    #navPages-47, 
+    #navPages-69, 
+    #navPages-118 {
+        width: 25% !important;
+    }
+    #navPages-47 li.navPage-subMenu-item, 
+    #navPages-69 li.navPage-subMenu-item,
+    #navPages-118 li.navPage-subMenu-item {
+        width: 50% !important;
+    }
+}
+
+// JTB4 191014: Need to reverse engineer this and document why this was done ???
+//@media all and (max-width:801px) {
+@media all and (max-width:830px) {
+//    #menu .navPages ul.navPages-list > li.navPages-item:hover > a + div.navPage-subMenu {
+//    display: none;
+//    }
+    #menu .navPages ul.navPages-list > li.navPages-item > a + div.navPage-subMenu.is-open {
+    display: block;
+    width: 100%;
+    }
+}
+
+
+// JTB4 191014: Override assets > scss > components > stencil > navUser > _navUser.scss
+// ------------------------------------------------------------------------------------
+
+// JTB4 191014: Adjust font weight, size and padding of nav action items in header
+.navUser-action {
+    font-weight: fontWeight("normal") !important;
+    font-size: .95rem !important;
+    //padding: 1rem .78571rem ;
+    padding: .75rem 1rem !important;
+}
+// JTB4 191014: Hide nav action item divider in header
+.navUser-item {
+    @include breakpoint("medium") {
+        &.navUser-item--divider {
+            display: none;
+        }
+    }
+}
+
+// JTB4 191014: Override assets > scss > components > stencil > banners > _banners.scss
+// ------------------------------------------------------------------------------------
+
+// JTB4 191014: Reduce spacing for banner in header
+.banners {
+    padding: 0.4rem 0 !important;
+    background-color: darkred !important;
+}
+
+
+

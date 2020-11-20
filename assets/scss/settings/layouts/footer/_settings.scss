@@ -1,0 +1,50 @@
+// =============================================================================
+// FOOTER (Settings)
+// =============================================================================
+
+$footer-background:                             stencilColor("footer-backgroundColor");
+$footer-heading-fontColor:                      stencilColor("footer-heading-fontColor");
+
+
+
+// =============================================================================
+// ALL JTB4 MODIFICATIONS TO SCSS: Footer
+// =============================================================================
+
+
+// JTB4 191014: Resize small footer columns for mobile layout
+// -----------------------------------------------------------------------------
+.footer-info-col--small {
+    max-width: 50% !important;
+}
+
+// JTB4 191014: Reset margins for payment icons in new span
+// -----------------------------------------------------------------------------
+.footer-payment-icons {
+    text-align: center;
+    margin-top: 0rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+// JTB4 191014: Add "Compare" button to footer
+// -----------------------------------------------------------------------------
+
+.navUser-item--compare.show {
+display: block;
+position: fixed;
+background: #3d5a80;
+bottom: 0px;
+right: 0px;
+width: 100%;
+text-align: center;
+font-size: large !important;
+color: #fff;
+padding: 20px;
+}
+.navUser-item--compare.show .countPill--positive {
+font-size: large !important;
+}
+a.navUser-action.navUser-item--compare.show {
+color: #eee !important;
+}
+

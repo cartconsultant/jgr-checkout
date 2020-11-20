@@ -1,0 +1,58 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: 96
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+{{#if category.image}}
+<!-- Class "catImage" added below to manipulate category page image -- JTB4 191011 -->
+    <img class="lazyload catImage" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage category.image 'zoom_size'}}">
+{{/if}}
+<!-- Class "catHeading" added below to manipulate category page headers -- JTB4 191011 -->
+<h1 class="page-heading catHeading">{{category.name}}</h1>
+<!-- Class "catDescr" added below to manipulate category page descriptions -- JTB4 191011 -->
+<span class="catDescr">{{{category.description}}}</span>
+{{{snippet 'categories'}}}
+<div class="page">
+    {{#if category.faceted_search_enabled}}
+        <aside class="page-sidebar" id="faceted-search-container">
+            {{> components/category/sidebar}}
+        </aside>
+    {{else if category.subcategories}}
+        <aside class="page-sidebar" id="faceted-search-container">
+            {{> components/category/sidebar}}
+        </aside>
+    {{else if category.shop_by_price}}
+        {{#if theme_settings.shop_by_price_visibility}}
+             <aside class="page-sidebar" id="faceted-search-container">
+                {{> components/category/sidebar}}
+            </aside>
+        {{/if}}
+    {{/if}}
+
+    <main class="page-content" id="product-listing-container">
+        {{#if category.products}}
+            {{> components/category/product-listing settings=../settings}}
+        {{else}}
+<!-- Hide "No Products in This Category" message -- JTB4 190119
+            <p>{{lang 'categories.no_products'}}</p>
+-- End Hide -->
+        {{/if}}
+    </main>
+</div>
+
+{{/partial}}
+{{> layout/base}}

@@ -1,0 +1,87 @@
+{{inject "displayNames" display_name}}
+{{inject "options" values}}
+<script>
+    
+    var jsContext = JSON.parse({{jsContext}});
+    var options;
+    var displayNames = jsContext.displayNames;
+    //console.log(displayNames)
+    if(!options){
+        options = jsContext.options
+        options.forEach(e => e.parent = displayNames)
+    }
+    else {
+        jsContext.options.forEach(e => e.parent = displayNames)
+        options.push(...jsContext.options)
+    }
+
+    console.log(options);
+    var currentSwatch = ''; // current swatch selected
+    var currentDisplayName = ''; //current display name
+
+    // setTimeout(function(){ 
+    //     console.log(window.features) 
+    // }, 750);
+
+    // if (window.view) {
+    //     window.testSwatches = window.view.getFeatures() 
+    //     console.log(window.testSwatches)
+    // }
+
+    function handleChange(label){
+        for(let e in options){
+            //options[e].labelconsole.log(options[e].label,label)
+            if(options[e].label === label){
+                //console.log(options[e].parent,options[e].label,label)
+                //testSwatches.push([options[e].parent,label])
+                //console.log(window.features.indexOf(options[e].parent.toUpperCase()))
+                window.features[window.features.indexOf(options[e].parent.toUpperCase())+1] = options[e].label.toUpperCase()
+                //window.features.push(label)
+                console.log(window.features)
+                window.view.setFeatures([options[e].parent,label])
+                //window.view.setFeatures(window.features)
+                console.log(window.view.getFeatures())
+            }
+        }           
+    }
+</script>
+<div class="form-field" data-product-attribute="swatch">
+    <label class="form-label form-label--alternate form-label--inlineSmall" id="disName">
+        {{this.display_name}}:
+        <span data-option-value></span>
+        {{#if required}}
+            <small>{{lang 'common.required'}}</small>
+        {{/if}}
+    </label>
+
+    {{#each this.values}}
+        <input onclick="handleChange('{{this.label}}')" class="form-radio" type="radio" name="attribute[{{../id}}]" value="{{id}}" id="attribute_swatch_{{../id}}_{{id}}" {{#if selected}}checked data-default{{/if}} {{#if ../required}}required{{/if}}>
+        <label class="form-option form-option-swatch" for="attribute_swatch_{{../id}}_{{id}}" data-product-attribute-value="{{id}}">
+            {{#if image}}
+                <span class='form-option-variant form-option-variant--pattern' title="{{this.label}}" style="background-image: url('{{getImage image "swatch_option_size"}}');"></span>
+            {{/if}}
+            {{#if data.[2]}}
+                <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+                <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[2]}}"></span>
+            {{else}}
+                {{#if data.[1]}}
+                    <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                    <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+                {{else}}
+                    {{#if data.[0]}}
+                        <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+            {{#if pattern}}
+                <span class="form-option-expanded">
+                    <span class="form-option-image" style="background-image: url('{{getImage image 'core-swatch'}}');"></span>
+<!-- Add option value to expanded swatch hover -- JTB4 191011 -->
+                    <span class="form-option-variant" style="padding-top:5px!important;" data-product-attribute-value="{{id}}">{{this.label}}</span>
+<!-- End -->                    
+                </span>
+            {{/if}}
+        </label>
+    {{/each}}
+</div>
