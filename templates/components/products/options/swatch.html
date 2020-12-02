@@ -1,48 +1,40 @@
 {{inject "displayNames" display_name}}
 {{inject "options" values}}
 <script>
-    
-    var jsContext = JSON.parse({{jsContext}});
-    var options;
-    var displayNames = jsContext.displayNames;
-    //console.log(displayNames)
-    if(!options){
-        options = jsContext.options
-        options.forEach(e => e.parent = displayNames)
+    try {
+        var jsContext = JSON.parse({{jsContext}});
+        var options;
+        var displayNames = jsContext.displayNames;
+        //console.log(displayNames)
+        if(!options){
+            options = jsContext.options
+            options.forEach(e => e.parent = displayNames)
+        }
+        else {
+            jsContext.options.forEach(e => e.parent = displayNames)
+            options.push(...jsContext.options)
+        }
+
+        var currentSwatch = ''; // current swatch selected
+        var currentDisplayName = ''; //current display name
+        var data = []
+        function handleChange(label){
+            for(let e in options){
+                if(options[e].label === label && label !== 'TBD'){
+                    try {
+                        data = window.view.getFeatures()
+                        data[data.indexOf(options[e].parent.toUpperCase())+1] = options[e].label.toUpperCase()
+                        window.view.setFeatures(data)
+                    }
+                    catch(e){
+                        console.log('Error handling swatch!')
+                    }
+                }
+            }           
+        }
     }
-    else {
-        jsContext.options.forEach(e => e.parent = displayNames)
-        options.push(...jsContext.options)
-    }
-
-    console.log(options);
-    var currentSwatch = ''; // current swatch selected
-    var currentDisplayName = ''; //current display name
-
-    // setTimeout(function(){ 
-    //     console.log(window.features) 
-    // }, 750);
-
-    // if (window.view) {
-    //     window.testSwatches = window.view.getFeatures() 
-    //     console.log(window.testSwatches)
-    // }
-
-    function handleChange(label){
-        for(let e in options){
-            //options[e].labelconsole.log(options[e].label,label)
-            if(options[e].label === label){
-                //console.log(options[e].parent,options[e].label,label)
-                //testSwatches.push([options[e].parent,label])
-                //console.log(window.features.indexOf(options[e].parent.toUpperCase()))
-                window.features[window.features.indexOf(options[e].parent.toUpperCase())+1] = options[e].label.toUpperCase()
-                //window.features.push(label)
-                console.log(window.features)
-                window.view.setFeatures([options[e].parent,label])
-                //window.view.setFeatures(window.features)
-                console.log(window.view.getFeatures())
-            }
-        }           
+    catch(e){
+        console.log('Error in swatch.html!')
     }
 </script>
 <div class="form-field" data-product-attribute="swatch">

@@ -27,7 +27,6 @@
                     }
                 })
             }
-            //console.log(finalOpts)
             // declare the variable that will hold the 360 HD Viewer instance
             var viewerInstance = null;
                 // the opts object should hold the start properties of the 360 HD Viewer
@@ -37,14 +36,11 @@
                 cylindo.on('ready', function () {
                     // create the instance
                     viewerInstance = cylindo.viewer.create(finalOpts);
-                    console.log(viewerInstance.getFeatures())
                     window.view = viewerInstance
-                    //cv.style.display = 'block'
-                    //$("<div id='cylindo-viewport'></div>").insertAfter(x);
                 });
             }
         }catch(e){
-            console.log(e)
+            console.log('Product View error')
         }
     });
 </script>
