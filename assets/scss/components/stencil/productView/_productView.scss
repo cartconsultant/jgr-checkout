@@ -4,23 +4,55 @@
 
 // Cylindo
 #cylindo-viewport {
-    margin-top: 100px;
-    margin-bottom: 50px;
-    height:100%;
-    width: auto;
+    margin-left:auto;
+    margin-right:auto;
+    height:575px !important;
+    width: 100%;
  }
 /*Override style for the viewer tooltip text */
 .cylindo-drag-tooltip,.cylindo-zoom-drag-tooltip{
     color:#B2A2D3 !important;
 }
+/* Zoom Style Attribute*/
+.max-zoom{
+    width:160px;
+    text-transform: uppercase;
+    margin-top:10px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: #202632;
+    color: #ccc;
+    padding: 10px 10px;
+    border:none;
+    cursor: pointer;
+  }
 /* Active Li element in thumbnail*/
 .cylindo-thumbnail-list>li.active {
     vertical-align: top;
     background-color:rgb(255,255,255);
 }
+.active:after {
+    content: none !important;
+}
 .cylindo-threesixty-list, .cylindo-custom-list {
     top:70px;
 }
+
+// List
+.cylindo-threesixty-list>li, .cylindo-custom-list>li {
+    background-color: white;
+}
+
+/* Height of Cylindo Thumbnail List. Should match BC List*/
+.cylindo-thumbnail-list {
+    height: 67px;
+}
+.cylindo-thumbnail-bar{
+    @media (min-width: $screen-xxsmall) and (max-width: $screen-medium) {
+        height: 55px;
+    }
+}
+
 // Container
 // -----------------------------------------------------------------------------
 
@@ -28,16 +60,21 @@
     padding-top: spacing("base");
 }
 
-
+.productView-img-container:after{
+    @media (min-width: 551px) and (max-width: 850px) {
+        padding-bottom: 0px !important;
+        margin-bottom: 0px !important;
+    }
+}
 // Images
 // -----------------------------------------------------------------------------
 
 .productView-images {
     margin-bottom: 15rem;
-}
-// List
-.cylindo-threesixty-list>li, .cylindo-custom-list>li {
-    background-color: white;
+    @media (min-width: 551px) and (max-width: 850px) {
+        padding-bottom: 0px !important;
+        margin-bottom: 0px !important;
+    }
 }
 
 .productView-image {
@@ -55,10 +92,10 @@
     + .productView-thumbnails {
         margin-top: spacing("half");
     }
-
-    @media (min-width: $screen-xxsmall) and (max-width: $screen-medium) {
-        pointer-events: none;
-    }
+    // Commented out for Cylindo plugin 
+    // @media (min-width: $screen-xxsmall) and (max-width: $screen-medium) {
+    //     pointer-events: none;
+    // }
 }
 
 .productView-img-container {

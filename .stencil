@@ -1,7 +1,9 @@
 {
   "customLayouts": {
     "brand": {},
-    "category": {},
+    "category": {
+      "theatre": "/theatre/"
+    },
     "page": {},
     "product": {}
   },

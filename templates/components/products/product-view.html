@@ -1,10 +1,13 @@
 {{inject "sku" product.sku}}
 {{inject "custom_fields" product.custom_fields}}
 <script>
-    $(function() {
+    $(document).ready(function() {
+        let jsContext = JSON.parse({{jsContext}});
+        //Default settings 
+        // If product does not use cylindo lines 230-231
+        $('#cylindo-viewport',this).hide();
+        $('.bc-viewport',this).show();
         try{
-            let jsContext = JSON.parse({{jsContext}});
-
             const cyl = jsContext.custom_fields
             let opts = {
                 'accountID': 4963,
@@ -13,31 +16,38 @@
                 'thumbCount': 5,
                 'thumbLocation': 'bottom',
                 'zoom': false,
-                'maxZoom': '2k',
-                'presentation': 'threesixty',
-                'version': 'Default',
+                'maxZoom': '4k',
+                'presentation': 'carousel',
+                'fullscreen': false,
+                'missingCombinationErrorText': 'Image Combination Not Found'
                 };
-
+            var isCylindo = false;
             if(cyl.length) {
                 cyl.forEach(el => {
                     if(el.name === 'cylindo') {
+                        isCylindo = true
                         let custOpts = JSON.parse(el.value)
                         window.features = custOpts.features
                         finalOpts = {...opts,...custOpts}
+
+                        $('#cylindo-viewport',this).show();
+                        $('.bc-viewport',this).hide();
+                        // declare the variable that will hold the 360 HD Viewer instance
+                        var viewerInstance = null;
+                        // the opts object should hold the start properties of the 360 HD Viewer
+                        // make sure the cylindo framework has been "installed"
+                        //if (cylindo) {
+                        // do not instantiate the viewer until the framework reports ready.
+                        cylindo.on('ready', function () {
+                            // create the instance
+                            console.log(finalOpts)
+                            viewerInstance = cylindo.viewer.create(finalOpts);
+                            window.view = viewerInstance
+
+                            window.view.getDebugInfo(window.view.loggerMap.LOG | window.view.loggerMap.WARNING);
+                        });
                     }
                 })
-            }
-            // declare the variable that will hold the 360 HD Viewer instance
-            var viewerInstance = null;
-                // the opts object should hold the start properties of the 360 HD Viewer
-                // make sure the cylindo framework has been "installed"
-                if (cylindo) {
-                // do not instantiate the viewer until the framework reports ready.
-                cylindo.on('ready', function () {
-                    // create the instance
-                    viewerInstance = cylindo.viewer.create(finalOpts);
-                    window.view = viewerInstance
-                });
             }
         }catch(e){
             console.log('Product View error')
@@ -223,40 +233,43 @@
             <div class="productView-img-container">
                 {{!-- Remove the surrounding a-element if there is no main image. --}}
                 <div id="cylindo-viewport"></div>
-                <!-- {{#if product.main_image}}
-                    <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
-                {{/if}} -->
+                <div class="bc-viewport">
+                    {{#if product.main_image}}
+                        <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
+                    {{/if}}
 
-                <!-- <img class="productView-image--default lazyload"
-                     data-sizes="auto"
-                     src="{{cdn 'img/loading.svg'}}"
-                     data-src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}"
-                     alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image> -->
-
+                    <img class="productView-image--default lazyload"
+                        data-sizes="auto"
+                        src="{{cdn 'img/loading.svg'}}"
+                        data-src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}"
+                        alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
+                </div>
                 {{#if product.main_image}}
                     </a>
                 {{/if}}
             </div>
         </figure>
-        <!-- <ul class="productView-thumbnails"{{#gt product.images.length 5}} data-slick='{
-                "infinite": false,
-                "mobileFirst": true,
-                "slidesToShow": 5,
-                "slidesToScroll": 1
-            }'{{/gt}}>
-            {{#each product.images}}
-                <li class="productView-thumbnail">
-                    <a
-                        class="productView-thumbnail-link"
-                        href="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
-                        data-image-gallery-item
-                        data-image-gallery-new-image-url="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
-                        data-image-gallery-zoom-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}">
-                        <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage this 'productview_thumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
-                    </a>
-                </li>
-            {{/each}}
-        </ul> -->
+        <div class="bc-viewport">
+            <ul class="productView-thumbnails"{{#gt product.images.length 5}} data-slick='{
+                    "infinite": false,
+                    "mobileFirst": true,
+                    "slidesToShow": 5,
+                    "slidesToScroll": 1
+                }'{{/gt}}>
+                {{#each product.images}}
+                    <li class="productView-thumbnail">
+                        <a
+                            class="productView-thumbnail-link"
+                            href="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                            data-image-gallery-item
+                            data-image-gallery-new-image-url="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                            data-image-gallery-zoom-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}">
+                            <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage this 'productview_thumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
     </section>
 
     <section class="productView-details">
