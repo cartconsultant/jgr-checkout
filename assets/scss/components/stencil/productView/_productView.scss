@@ -65,13 +65,27 @@
         padding-bottom: 0px !important;
         margin-bottom: 0px !important;
     }
+    @media (mid-width: 850px) {
+        padding-bottom: 0px !important;
+        margin-bottom: 0px !important;
+    }
+
+
 }
 // Images
 // -----------------------------------------------------------------------------
 
 .productView-images {
-    margin-bottom: 15rem;
+    @media (max-width: 550px) {
+        margin-bottom: 15rem;
+    }
+
     @media (min-width: 551px) and (max-width: 850px) {
+        padding-bottom: 0px !important;
+        margin-bottom: 0px !important;
+    }
+
+    @media (mid-width: 850px) {
         padding-bottom: 0px !important;
         margin-bottom: 0px !important;
     }
