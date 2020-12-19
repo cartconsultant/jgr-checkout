@@ -22,9 +22,11 @@
             for(let e in options){
                 if(options[e].label === label && label !== 'TBD'){
                     try {
-                        data = window.view.getFeatures()
-                        data[data.indexOf(options[e].parent.toUpperCase())+1] = options[e].label.toUpperCase()
-                        window.view.setFeatures(data)
+                        if(window.view) {
+                            data = window.view.getFeatures()
+                            data[data.indexOf(options[e].parent.toUpperCase())+1] = options[e].label.toUpperCase()
+                            window.view.setFeatures(data)
+                        }
                     }
                     catch(e){
                         console.log('Error handling swatch!')

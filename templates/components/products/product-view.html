@@ -1,5 +1,6 @@
 {{inject "sku" product.sku}}
 {{inject "custom_fields" product.custom_fields}}
+{{inject "images" product.images}}
 <script>
     $(document).ready(function() {
         let jsContext = JSON.parse({{jsContext}});
@@ -8,6 +9,20 @@
         $('#cylindo-viewport',this).hide();
         $('.bc-viewport',this).show();
         try{
+            const images = jsContext.images
+            const alternateContent = []
+            if(images.length) {
+                images.forEach(img => {
+                    let updatedImage = img.data.replace('{:size}', '1280x1280')
+                    let updatedThumb = img.data.replace('{:size}', '100x100')
+                    alternateContent.push({
+                        image: updatedImage,
+                        thumb: updatedThumb,
+                        description: img.alt 
+                    })
+                })
+            }
+
             const cyl = jsContext.custom_fields
             let opts = {
                 'accountID': 4963,
@@ -15,10 +30,10 @@
                 'thumbs': true,
                 'thumbCount': 5,
                 'thumbLocation': 'bottom',
-                'zoom': false,
-                'maxZoom': '4k',
-                'presentation': 'carousel',
+                'maxZoom': '2k',
+                'presentation': 'threesixty',
                 'fullscreen': false,
+                'alternateContent': alternateContent ? alternateContent : [],
                 'missingCombinationErrorText': 'Image Combination Not Found'
                 };
             var isCylindo = false;

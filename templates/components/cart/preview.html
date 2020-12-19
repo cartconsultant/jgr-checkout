@@ -1,3 +1,36 @@
+<script>
+    $(document).ready(function() {
+        var imageUrl = ''
+        console.log(window.view)
+        if(window.view) {
+            try{
+                 let imageUrl = window.view.getCurrentImageUrl() //.then(res => {
+                    //var jqxhr = $.get(imageUrl, function() {
+                        $('#bcCartDefault',this).hide(); //70
+                        $("#cylCartDefault").attr("src",imageUrl);
+                        $("#cylCartDefault").attr("data-src",imageUrl);
+                        $('#cylCartDefault',this).show(); //77
+                        console.log('No Error',imageUrl)
+                    //})
+                    //.fail(function(e) {
+                        
+                    //})
+                     
+                //}).catch(e=> {
+                    // $('#bcCartDefault',this).show(); //70
+                    // $('#cylCartDefault',this).hide(); //77
+                    // console.log(e)
+                //})
+
+            }catch(e) {
+                console.log('No Error',imageUrl)
+                $('#bcCartDefault',this).show(); //70
+                $('#cylCartDefault',this).hide(); //77
+                console.log('Error',e)
+            }
+        }
+    });
+</script>
 <div class="modal-header">
     <h2 class="modal-header-title">
         {{lang 'cart.added_to_cart.what_next' num_products=cart.quantity}}
@@ -54,8 +87,17 @@
         <section class="productView">
             {{#with cart.added_item}}
                 <figure class="productView-image">
+                    <!-- PRODUCT VIEW IMAGE CONTAINER HOLDING EITHER BC OR CYLINDO CART IMAGES
+                     -->
                     <div class="productView-img-container">
-                        <img class="productView-image--cart lazyload"
+                        <img id="bcCartDefault" class="productView-image--cart lazyload"
+                            data-sizes="auto"
+                            src="{{cdn 'img/loading.svg'}}"
+                            data-src="{{getImage image 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                            alt="{{image.alt}}"
+                            title="{{image.alt}}" />
+
+                        <img id="cylCartDefault" class="productView-image--cart lazyload"
                             data-sizes="auto"
                             src="{{cdn 'img/loading.svg'}}"
                             data-src="{{getImage image 'product_size' (cdn ../theme_settings.default_image_product)}}"
