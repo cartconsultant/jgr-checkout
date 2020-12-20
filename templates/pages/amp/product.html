@@ -22,17 +22,6 @@ product:
     {{/if}}
 {{/partial}}
 {{#partial "page"}}
-<style>
-    #put-viewer-here {
-    height:512px;
-    }
-
-    /*Override style for the viewer tooltip text */
-    .cylindo-drag-tooltip,.cylindo-zoom-drag-tooltip{
-    color:#B2A2D3 !important;
-    }
-</style>
-<div id="put-viewer-here"></div>
     {{> components/amp/common/header }}
     <div itemscope itemtype="http://schema.org/Product">
         {{> components/amp/products/product-view schema=true settings=../settings}}

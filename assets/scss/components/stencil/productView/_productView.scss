@@ -94,7 +94,7 @@
  * NOTE *** This is using default @media css attributes and not BC variable attributes*/
 .productView-images {
     @media (max-width: 550px) {
-        margin-bottom: 15rem;
+        margin-bottom: 15rem; //margin-bottom: spacing("double");
     }
 
     @media (min-width: 551px) and (max-width: 850px) {

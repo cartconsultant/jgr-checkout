@@ -360,6 +360,8 @@ h2.page-heading {
 // JTB4 191014: Flatten search results page
 .actionBar {
     margin:0 !important;
+// JTB4 2011207: Hide action bar
+    display: none;
 }
 
 // JTB4 191014: Override assets > scss > components > citadel > cards > _cards.scss
@@ -413,7 +415,9 @@ h2.page-heading {
     max-width: unset !important;
     width: 100vw !important;
     margin-left: -4vw !important;
-    margin-bottom: 1.5rem !important;
+    //margin-bottom: 1.5rem !important;
+// JTB4 2011207: Increase bottom margin and hide action bar
+    margin-bottom: 3rem !important;
     max-height: 220px !important;
     //opacity: 0.9;
     
@@ -513,6 +517,11 @@ h2.page-heading {
     //font-size: fontSize("smallest") !important;  // Reduce MSRP and Savings font size
     font-size: 1.0rem !important;  // Reduce MSRP and Savings font size
     color: #757575 !important;  // Lighten color of MSRP and Savings font
+}
+
+// JTB4 201118: Reduce Affirm messaging font size
+.affirm-as-low-as {
+    font-size: 0.95rem !important;
 }
 
 // JTB4 201202: Style new class "button--secondary"
