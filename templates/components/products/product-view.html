@@ -251,14 +251,13 @@
                 data-zoom-image="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}"
                 {{/if}}
                 >
-            <div class="productView-img-container">
                 {{!-- Remove the surrounding a-element if there is no main image. --}}
                 <div id="cylindo-viewport"></div>
                 <div class="bc-viewport">
+                    <div class="productView-img-container">
                     {{#if product.main_image}}
                         <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
                     {{/if}}
-
                     <img class="productView-image--default lazyload"
                         data-sizes="auto"
                         src="{{cdn 'img/loading.svg'}}"
