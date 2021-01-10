@@ -110,11 +110,24 @@ export default class Cart extends PageManager {
             }
         });
     }
-
+    /*
+    * CYLINDO CUSTOM IMPLEMENTATION TO REMOVE CYLINDO LOCAL STORAGE IF USER REMOVES ITEMS FROM CART
+    */
     cartRemoveItem(itemId) {
         this.$overlay.show();
+        let imageUrl = JSON.parse(localStorage.getItem('cylindoImage')) //JS Local Storage
         utils.api.cart.itemRemove(itemId, (err, response) => {
             if (response.data.status === 'succeed') {
+                if(imageUrl){
+                    for(let i of imageUrl){
+                        if(i === $(`#${itemId}`).attr('src')){
+                            imageUrl = imageUrl.filter(item => item !== $(`#${itemId}`).attr('src'))
+                            //JS Local Storage
+                            !imageUrl.length ? localStorage.removeItem('cylindoImage') : localStorage.setItem('cylindoImage',JSON.stringify(imageUrl))
+                            break;
+                        }
+                    }
+                }
                 this.refreshContent(true);
             } else {
                 swal({

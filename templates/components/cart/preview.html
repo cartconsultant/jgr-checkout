@@ -1,31 +1,19 @@
 <script>
     $(document).ready(function() {
-        var imageUrl = ''
-        console.log(window.view)
         if(window.view) {
             try{
-                 let imageUrl = window.view.getCurrentImageUrl() //.then(res => {
-                    //var jqxhr = $.get(imageUrl, function() {
-                        $('#bcCartDefault',this).hide(); //70
+                let imageUrl = window.view.getCurrentImageUrl() 
+                let cylArr = JSON.parse(localStorage.getItem('cylindoImage')) //JS Local Storage
+
+                Array.isArray(cylArr) ? cylArr.push(imageUrl) : cylArr = [imageUrl]
+                localStorage.setItem('cylindoImage', JSON.stringify(cylArr)) //JS Local Storage
+                        $('#bcCartDefault',this).hide(); //83
                         $("#cylCartDefault").attr("src",imageUrl);
                         $("#cylCartDefault").attr("data-src",imageUrl);
-                        $('#cylCartDefault',this).show(); //77
-                        console.log('No Error',imageUrl)
-                    //})
-                    //.fail(function(e) {
-                        
-                    //})
-                     
-                //}).catch(e=> {
-                    // $('#bcCartDefault',this).show(); //70
-                    // $('#cylCartDefault',this).hide(); //77
-                    // console.log(e)
-                //})
-
+                        $('#cylCartDefault',this).show(); //90
             }catch(e) {
-                console.log('No Error',imageUrl)
-                $('#bcCartDefault',this).show(); //70
-                $('#cylCartDefault',this).hide(); //77
+                $('#bcCartDefault',this).show(); //83
+                $('#cylCartDefault',this).hide(); //90
                 console.log('Error',e)
             }
         }

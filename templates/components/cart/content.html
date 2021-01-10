@@ -1,3 +1,24 @@
+{{inject "items" cart.items}}
+{{getImage image }}
+<script>
+    $(document).ready(function() {
+        let jsContext = JSON.parse({{jsContext}});   
+        var imageUrl = JSON.parse(localStorage.getItem('cylindoImage')) //JS Local Storage
+
+        if(imageUrl.length && jsContext.items.length) {
+            try{
+                for(let el in jsContext.items){
+                    if(imageUrl[el]){
+                        $(`#${jsContext.items[el].id}`).attr("src",imageUrl[el]);
+                        $(`#${jsContext.items[el].id}`).attr("data-src",imageUrl[el]);
+                    }
+                }
+            }catch(e) {
+                console.log('Error',e)
+            }
+        }
+    });
+</script>
 <table class="cart" data-cart-quantity="{{cart.quantity}}">
     <thead class="cart-header">
         <tr>
@@ -14,7 +35,7 @@
                     {{#if type '==' 'GiftCertificate'}}
                         <img class="cart-item-fixed-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate" title="GiftCertificate">
                     {{else}}
-                        <img class="cart-item-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productthumb_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+                        <img class="cart-item-image cylImage lazyload" id="{{id}}" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productthumb_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
                     {{/if}}
                 </td>
                 <td class="cart-item-block cart-item-title">
@@ -141,7 +162,7 @@
                         {{> components/common/login-for-pricing}}
                     {{/or}}
                     {{# if can_modify}}
-                        <a class="cart-remove icon" data-cart-itemid="{{id}}" href="#" data-confirm-delete="{{lang 'cart.confirm_delete'}}">
+                        <a class="cart-remove icon" data-cart-itemid="{{id}}" data-cart-image="{{image.data}}" href="#" data-confirm-delete="{{lang 'cart.confirm_delete'}}">
                             <svg><use xlink:href="#icon-close"></use></svg>
                         </a>
                     {{else}}
