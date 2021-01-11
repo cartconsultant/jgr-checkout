@@ -6,7 +6,7 @@ $container-padding: spacing("single");
 
 
 // =============================================================================
-// ALL JTB4 MODIFICATIONS TO SCSS: Non-Header & Non-Footer
+// ALL JTB4 MODIFICATIONS TO SCSS (NOT HEADER OR FOOTER)
 // =============================================================================
 
 // *****************************************************************************
@@ -483,8 +483,81 @@ h2.page-heading {
     margin-top: 2px;
 }
 
+
 // *****************************************************************************
 // PRODUCT DETAIL PAGE PDP -- PRODUCT DETAIL PAGE PDP -- PRODUCT DETAIL PAGE PDP
+// *****************************************************************************
+
+// ********************************************************************************************************
+// CYLINDO Overrides and additions to assets > scss > components > stencil > productView > productView.scss
+// ********************************************************************************************************
+
+// AUTHOR Stephen Romero (Cart Consultant)
+// Set basic Cylindo viewport parameters
+#cylindo-viewport {
+    margin-left:auto;
+    margin-right:auto;
+    height:575px !important;
+    width: 100%;
+    background-color: #fff;
+ }
+// Set Zoom style attribute
+.max-zoom {
+    width:160px;
+    text-transform: uppercase;
+    margin-top:10px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: #202632;
+    color: #ccc;
+    padding: 10px 10px;
+    border:none;
+    cursor: pointer;
+  }
+// Override default behavior of thumbnail marker
+.active:after {
+    content: none !important;
+}
+// Set background color of threesixty presentation to white
+.cylindo-threesixty-list>li, .cylindo-custom-list>li {
+    background-color: white;
+}
+
+// AUTHOR JTB4 210105
+// Override style for the viewer tooltip text
+.cylindo-drag-tooltip,.cylindo-zoom-drag-tooltip{
+    color: #336699!important;
+    opacity: 60% !important;
+    background-color: white;
+}
+// Override top margin of thumbnail wrapper
+.cylindo-thumbnail-wrapper {
+    margin-top: 20px;    
+}
+// Override default thumbnail size
+.cylindo-thumbnail-wrapper, .cylindo-thumbnail-bar, .cylindo-thumbnail-slider, .cylindo-thumbnail-slider > a {
+	max-height: 50px !important;
+	line-height: normal !important;
+}
+// Override appearance of thumbnails
+.cylindo-thumbnail-list>li {
+    width: 75px!important;
+    background-color: white;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+// Override appearance of over and active thumbnail
+.cylindo-thumbnail-list>li:hover, .cylindo-thumbnail-list>li.active {
+    border: 1px solid #333;
+}
+// Override appearance of L < > R thumbnail gallery glyphs
+.glyphicon {
+    top: 10px;
+    font-size: 1.5em;
+}
+
+// *****************************************************************************
+// OTHER PDP -- OTHER PDP -- OTHER PDP -- OTHER PDP -- OTHER PDP -- OTHER PDP
 // *****************************************************************************
 
 // JTB4 191014: Reduce product title font size to large from largest in desktop
@@ -566,6 +639,9 @@ h2.page-heading {
 // JTB4: 191102: Fix main product image aspect ratio to respect landscape
 .productView-img-container {
     max-height: 320px;
+    position: unset !important; //JTB4 210104 Attempting to make BC default viewport work with Cylindo
+    height: 500px; // JTB4 210104 Attempting to make BC default viewport work with Cylindo
+    
     @include breakpoint("small") {
     max-height: 500px;
     }
@@ -617,6 +693,9 @@ h2.page-heading {
 }
 
 // JTB4: 191014: Fix gallery thumbnails to be exactly 78px wide in all resolutions and hide dots
+.productView-thumbnails {
+    margin-top: 1em !important; // JTB4 210104 Attempting to make BC default viewport work with Cylindo
+}
 .productView-thumbnail {
     width: 78px !important;
     @include breakpoint("large") {

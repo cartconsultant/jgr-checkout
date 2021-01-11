@@ -13,7 +13,7 @@ export default class Checkout extends PageManager {
         $('img[data-test]').each(function(i){
           if(cylImages[i]) $(this).attr('src',cylImages[i])
         })
-      },500)
+      },1000)
     }
 
     async transition() {

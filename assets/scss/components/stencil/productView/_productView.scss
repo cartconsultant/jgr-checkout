@@ -2,110 +2,18 @@
 // PRODUCT VIEW (CSS)
 // =============================================================================
 
-// Cylindo
-/* Author Stephen Romero (Cart Consultant)*/
-#cylindo-viewport {
-    margin-left:auto;
-    margin-right:auto;
-    height:575px !important;
-    width: 100%;
- }
-/* Author Stephen Romero (Cart Consultant)
- * Override style for the viewer tooltip text */
-.cylindo-drag-tooltip,.cylindo-zoom-drag-tooltip{
-    color:#B2A2D3 !important;
-}
-/* Author Stephen Romero (Cart Consultant)
- * Zoom Style Attribute*/
-.max-zoom{
-    width:160px;
-    text-transform: uppercase;
-    margin-top:10px;
-    font-size: 14px;
-    letter-spacing: 1px;
-    background: #202632;
-    color: #ccc;
-    padding: 10px 10px;
-    border:none;
-    cursor: pointer;
-  }
-/*  Author Stephen Romero (Cart Consultant)
- * Active Li element in thumbnail*/
-.cylindo-thumbnail-list>li.active {
-    vertical-align: top;
-    background-color:rgb(255,255,255);
-}
-/* Author Stephen Romero (Cart Consultant)
- *Removes the underscore css that comes with the default cylindo css when a thumbnail is clicked.*/
-.active:after {
-    content: none !important;
-}
-/* Author Stephen Romero (Cart Consultant)*/
-.cylindo-threesixty-list, .cylindo-custom-list {
-    top:70px;
-}
-
-// List
-/* Author Stephen Romero (Cart Consultant)*/
-.cylindo-threesixty-list>li, .cylindo-custom-list>li {
-    background-color: white;
-}
-
-/* Author Stephen Romero (Cart Consultant)
- * Height of Cylindo Thumbnail List. Should match BC List*/
-.cylindo-thumbnail-list {
-    height: 67px;
-}
-/* Author Stephen Romero (Cart Consultant)
- * Height of Cylindo Thumbnail Bar. Should match BC List
- *  * NOTE *** This is using default @media css attributes and not BC variable attributes*/
-.cylindo-thumbnail-bar{
-    @media (min-width: $screen-xxsmall) and (max-width: $screen-medium) {
-        height: 55px;
-    }
-}
-
 // Container
 // -----------------------------------------------------------------------------
 
 .productView {
     padding-top: spacing("base");
 }
-/* Author Stephen Romero (Cart Consultant)
- * Changes the vieport padding based on media size.
- * NOTE *** This is using default @media css attributes and not BC variable attributes*/
-.productView-img-container:after{
-    @media (min-width: 551px) and (max-width: 850px) {
-        padding-bottom: 0px !important;
-        margin-bottom: 0px !important;
-    }
-    @media (mid-width: 850px) {
-        padding-bottom: 0px !important;
-        margin-bottom: 0px !important;
-    }
 
-
-}
 // Images
 // -----------------------------------------------------------------------------
 
-/* Author Stephen Romero (Cart Consultant)
- * Changes the vieport productView class margin based on media size.
- * NOTE *** This is using default @media css attributes and not BC variable attributes*/
 .productView-images {
-    @media (max-width: 550px) {
-        margin-bottom: 15rem; //margin-bottom: spacing("double");
-    }
-
-    @media (min-width: 551px) and (max-width: 850px) {
-        padding-bottom: 0px !important;
-        margin-bottom: 0px !important;
-    }
-
-    @media (mid-width: 850px) {
-        padding-bottom: 0px !important;
-        margin-bottom: 0px !important;
-    }
+    margin-bottom: spacing("double");
 }
 
 .productView-image {
@@ -123,12 +31,10 @@
     + .productView-thumbnails {
         margin-top: spacing("half");
     }
-    /* Author Stephen Romero (Cart Consultant)
-     * Commented out for Cylindo plugin 
-     * NOTE *** This is using default @media css attributes and not BC variable attributes*/
-    // @media (min-width: $screen-xxsmall) and (max-width: $screen-medium) {
-    //     pointer-events: none;
-    // }
+
+    @media (min-width: $screen-xxsmall) and (max-width: $screen-medium) {
+        pointer-events: none;
+    }
 }
 
 .productView-img-container {
@@ -149,7 +55,6 @@
 .productView-thumbnails {
     @include u-listBullets("none");
     @include grid-row($behavior: "nest");
-
     margin-left: -(spacing("quarter"));
     margin-right: -(spacing("quarter"));
 
