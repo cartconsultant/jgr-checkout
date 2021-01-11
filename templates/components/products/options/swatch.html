@@ -5,7 +5,7 @@
         var jsContext = JSON.parse({{jsContext}});
         var options;
         var displayNames = jsContext.displayNames;
-        //console.log(displayNames)
+
         if(!options){
             options = jsContext.options
             options.forEach(e => e.parent = displayNames)
@@ -36,7 +36,7 @@
         }
     }
     catch(e){
-        console.log('Error in swatch.html!')
+        console.log('Swatch Error!')
     }
 </script>
 <div class="form-field" data-product-attribute="swatch">

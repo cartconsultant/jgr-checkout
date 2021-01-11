@@ -4,9 +4,16 @@
     <title>{{ head.title }}</title>
     {{{ head.meta_tags }}}
     {{{ head.config }}}
-
     <link href="{{ head.favicon }}" rel="shortcut icon">
     {{#block "head"}}{{/block}}
+    <!-- CYLINDO CHECKOUT START-->
+	<script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+    <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+    <script>
+        {{!-- Exported in app.js --}}
+        window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+    </script>
+    <!-- CYLINDO CHECKOUT END-->
 </head>
 <body>
     {{#block "page"}}{{/block}}

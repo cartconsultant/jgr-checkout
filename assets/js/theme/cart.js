@@ -115,15 +115,15 @@ export default class Cart extends PageManager {
     */
     cartRemoveItem(itemId) {
         this.$overlay.show();
-        let imageUrl = JSON.parse(localStorage.getItem('cylindoImage')) //JS Local Storage
+        let imageUrl = JSON.parse(sessionStorage.getItem('cylindoImage')) //JS Session Storage
         utils.api.cart.itemRemove(itemId, (err, response) => {
             if (response.data.status === 'succeed') {
                 if(imageUrl){
                     for(let i of imageUrl){
                         if(i === $(`#${itemId}`).attr('src')){
                             imageUrl = imageUrl.filter(item => item !== $(`#${itemId}`).attr('src'))
-                            //JS Local Storage
-                            !imageUrl.length ? localStorage.removeItem('cylindoImage') : localStorage.setItem('cylindoImage',JSON.stringify(imageUrl))
+                            //JS Session Storage
+                            !imageUrl.length ? sessionStorage.removeItem('cylindoImage') : sessionStorage.setItem('cylindoImage',JSON.stringify(imageUrl))
                             break;
                         }
                     }

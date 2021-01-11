@@ -3,7 +3,7 @@
 <script>
     $(document).ready(function() {
         let jsContext = JSON.parse({{jsContext}});   
-        var imageUrl = JSON.parse(localStorage.getItem('cylindoImage')) //JS Local Storage
+        var imageUrl = JSON.parse(sessionStorage.getItem('cylindoImage')) //JS Session Storage
 
         if(imageUrl.length && jsContext.items.length) {
             try{
@@ -14,7 +14,7 @@
                     }
                 }
             }catch(e) {
-                console.log('Error',e)
+                console.log('Content Error',e)
             }
         }
     });
