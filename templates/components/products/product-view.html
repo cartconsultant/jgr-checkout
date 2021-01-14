@@ -21,6 +21,7 @@
                         description: img.alt 
                     })
                 })
+                alternateContent.shift()
             }
 
             const cyl = jsContext.custom_fields
@@ -44,7 +45,6 @@
                         let custOpts = JSON.parse(el.value)
                         window.features = custOpts.features
                         finalOpts = {...opts,...custOpts}
-
                         $('#cylindo-viewport',this).show();
                         $('.bc-viewport',this).hide();
                         // declare the variable that will hold the 360 HD Viewer instance
