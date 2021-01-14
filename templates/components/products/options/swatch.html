@@ -2,10 +2,11 @@
 {{inject "options" values}}
 <script>
     try {
-        var jsContext = JSON.parse({{jsContext}});
+        const jsContext = JSON.parse({{jsContext}});
         var options;
         var displayNames = jsContext.displayNames;
-
+        const cyl = jsContext.custom_fields.filter((el)=>{return el.name === 'cylindoSwatches'})
+        const cylSwatches = cyl ? JSON.parse(cyl[0].value) : []
         if(!options){
             options = jsContext.options
             options.forEach(e => e.parent = displayNames)
@@ -20,7 +21,7 @@
         var data = []
         function handleChange(label){
             for(let e in options){
-                if(options[e].label === label && label !== 'TBD'){
+                if(options[e].label === label && label !== 'TBD' && cylSwatches.includes(options[e].parent)){
                     try {
                         if(window.view) {
                             data = window.view.getFeatures()
